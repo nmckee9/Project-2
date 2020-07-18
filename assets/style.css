@@ -1,0 +1,13 @@
+.jumb {
+
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+      text-align: center;
+  }
+
+  p {
+      text-align: center;
+  }
