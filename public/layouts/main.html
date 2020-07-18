@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+    <!-- {{{ body }}} -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Rabbit Hole</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User Info
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" id="likesPage">Likes</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container jumb"></div>
+    <div class="jumbotron" style="text-align: center;">
+        <div class="container"></div>
+        <h1 class="display-4">Rabbit Hole</h1>
+        <p class="lead">Explanation of Rabbit Hole Here</p>
+        <hr class="my-4">
+        <p>To get started, select either artist or song</p>
+            <div class="InputAddOn"> 
+                <span class="InputAddOn-item">
+                    <select class="custom-select select-shape mr-sm-2" id="inlineFormCustomSelect">
+                        <option value="1" id="selectArtist">Artist</i></option>
+                        <option value="2" id="selectTrack">Track</option>
+                    </select>
+                </span>
+                <p>Then search for any artist or a song title</p>
+                <div class="">
+                    <input type="text" class="form-control" id="searchInput" placeholder="enter artist or track" aria-label="Username"
+                        aria-describedby="addon-wrapping">
+                </div>
+            </div>
+            <a class="btn btn-primary btn-lg" href="/results" id="mainSearch" role="button" style="margin-top: 20px;">go!</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+        <script src="js/results.js"></script>
+</body>
+
+</html>
