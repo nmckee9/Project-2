@@ -23,7 +23,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <li class="nav-item dropdown">
@@ -33,9 +35,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#" id="likesPage">Likes</a>
-                        <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#" id="logout">Logout</a>
                     </div>
             </form>
         </div>
@@ -47,7 +48,7 @@
         <h1 class="display-4">Rabbit Hole</h1>
         <p class="lead">Explanation of Rabbit Hole Here</p>
         <hr class="my-4">
-        <p>To get started, select either artist or song</p>
+        <p>To get started, select either artist or track title</p>
             <div class="InputAddOn"> 
                 <span class="InputAddOn-item">
                     <select class="custom-select select-shape mr-sm-2" id="inlineFormCustomSelect">
@@ -55,7 +56,7 @@
                         <option value="2" id="selectTrack">Track</option>
                     </select>
                 </span>
-                <p>Then search for any artist or a song title</p>
+                <p>Then search for any artist or a track title</p>
                 <div class="">
                     <input type="text" class="form-control" id="searchInput" placeholder="enter artist or track" aria-label="Username"
                         aria-describedby="addon-wrapping">
