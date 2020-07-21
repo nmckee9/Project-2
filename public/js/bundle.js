@@ -55421,15 +55421,24 @@ $(() => {
   //     $(".member-name").text(data.email);
   //   });
 
-  $("#mainSearch").on("click", event => {
+  const selectChoice = $("#inlineFormCustomSelect");
+  let search = $("#searchInput");
+  const submitBtn = $("#mainSearch");
+  const bookPreviewBtn = $("book-preview-button");
+  const resultsDiv = $("<div>");
+  resultsDiv.attr("id", "results");
+  $(".jumbotron").append(resultsDiv);
+
+  submitBtn.on("click", event => {
     event.preventDefault();
-    let queryType = $("#inlineFormCustomSelect").val();
-    let queryName = $("#searchInput").val();
+    let queryType = selectChoice.val();
+    let queryName = search.val();
+    let artistDiv = $("<div>");
     if (queryType === "1") {
-      spotify
+        renderArtistBooks();
+        spotify
         .search({ type: "artist", query: queryName, limit: 5 })
         .then(response => {
-          let artistDiv = $("<div>");
           for (let i = 0; i < response.artists.items.length; i++) {
             let artistName = $("<button>").text(
               `Artist Name: ${response.artists.items[i].name}`
@@ -55438,13 +55447,15 @@ $(() => {
               artistName.attr("id", i);
               artistDiv.append(artistName);
             }
-            $(".jumbotron").append(artistDiv);
+            artistDiv.addClass("book-div col div.jumbotron jumbotron")
+            $(resultsDiv).append(artistDiv);
             return response;
         })
         .then(response => {
           for (let i = 0; i< response.artists.items.length; i++) {
             $(`#${i}`).on("click", event => {
               event.preventDefault();
+              artistDiv.empty();
               spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`)
                 .then(res => {
@@ -55461,7 +55472,7 @@ $(() => {
                         topFiveList.append(listEl);
                       }
                     topFiveDiv.append(topFiveList);
-                    $(".jumbotron").append(topFiveDiv);
+                    $(resultsDiv).append(topFiveDiv);
               })
                 .catch(err => {
                   if (err) throw err;
@@ -55488,10 +55499,61 @@ $(() => {
             let album = $("<p>").text(response.tracks.items[i].album.name);
             songsDiv.append(title, artist, album);
           }
-          $(".jumbotron").append(songsDiv);
+          $(resultsDiv).append(songsDiv);
         });
     }
-  });
+  })
+  const renderArtistBooks = () => {
+    const searchTerm = search.val();
+    console.log("https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"')
+    $.ajax({
+      url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"',
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        if (!data.items) {
+          const noBooksDiv = $("<div>");
+          noBooksDiv.addClass("no-books-found-div");
+          noBooksDiv.text("No books found...");
+        }
+        //add title and author contents to html book list from json
+        const musicBookContainer = $("<div>");
+        musicBookContainer.addClass("both-container");
+        const bookDiv = $("<div>");
+        bookDiv.addClass("book-div col div.jumbotron jumbotron");
+        musicBookContainer.append(bookDiv);
+        const booklistHeader = $("<h2>");
+        booklistHeader.text("Read about " + searchTerm + "...");
+        bookDiv.append(booklistHeader);
+        const list = $("<ul>");
+        list.addClass("booklist");
+        bookDiv.append(list);
+        resultsDiv.append(musicBookContainer);
+        for (let i = 0; i < data.items.length; i++) {
+          const listItem = $("<li>");
+          listItem.addClass("book-item");
+          listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
+          bookDiv.append(listItem);
+          const bookPreviewBtn = $("<a>");
+          bookPreviewBtn.addClass("book-preview-button btn");
+          bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
+          bookPreviewBtn.attr("target", "_blank");
+          bookPreviewBtn.text("Preview");
+          listItem.append(bookPreviewBtn);
+          const likeBookBtn = $("<button>");
+          likeBookBtn.addClass("artist-like-book-button");
+          bookPreviewBtn.attr("book-title", data.items[i].volumeInfo.title);
+          likeBookBtn.text("Like");
+          listItem.append(likeBookBtn);
+          list.append(listItem);
+          bookDiv.append(list);
+        }
+      },
+      type: "GET"
+    });
+    //get preview of book to appear when user clicks Book Preview button
+  }
+  ;
 });
 
 },{"node-spotify-api":116}],188:[function(require,module,exports){

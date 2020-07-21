@@ -2,3 +2,89 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+.navbar {
+  background: rgb(148, 144, 123);
+}
+html {
+  background: rgb(148, 144, 123);
+}
+ul {
+  list-style-type: none;
+  text-align: left;
+  width: 550px;
+}
+/* .container {
+  display: flex;
+  text-align: left;
+  padding: 0;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right:0;padding-left:0;border-radius:0;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  border-radius: 10%;
+} */
+.col {
+  float: left;
+  width: 50%;
+}
+li {
+ margin-top: 5px;
+ margin-bottom: 5px;
+ padding: 0;
+ text-align: left;
+ color: darkblue;
+ font-size: 18px;
+}
+/* .book-preview-button {
+  border-radius: 8%;
+  border: 1px;
+  margin-left: 10px;
+  padding: 4px;
+  background: rgb(148, 144, 123);
+  border: rgb(23, 69, 87);
+}
+.like-book-button {
+  border-radius: 8%;
+  border: 1px;
+  margin-left: 10px;
+  padding: 4px;
+  background: rgb(231, 216, 195);
+  border: palevioletred;
+}
+.book-div {
+  margin-top: 95px;
+}
+.booklist {
+  padding: 0;
+}
+h2 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-bottom: 15px;
+  text-align: left;
+}
+/* .main-background {
+  background: url(../assets/other-hole.jpg);
+} */
+/* h1 {
+  color: white;
+  font-weight: bolder;
+}
+p {
+  color: white;
+}
+p.lead {
+  font-weight: bold;
+  color: rgb(231, 216, 195);
+}
+#mainSearch {
+  background: rgb(231, 216, 195;
+  padding: 10px;
+  border-radius: 6px;
+}
+.custom-select {
+  width: 200px;
+}  */
