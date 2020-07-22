@@ -55509,7 +55509,7 @@ $(() => {
     $.ajax({
       url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"',
       dataType: "json",
-      success: function (data) {
+      success: data => {
         console.log(data);
         if (!data.items) {
           const noBooksDiv = $("<div>");
