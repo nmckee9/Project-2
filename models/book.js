@@ -25,8 +25,8 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Book.belongsToMany(models.Tag, {
-      through: 'BookTags'
-    })
+      through: "BookTags"
+    });
   };
 
   return Book;
