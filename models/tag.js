@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     Tag.associate = function(models) {
       // We're saying that a Tag should belong to an Author
       // A Tag can't be created without an Author due to the foreign key constraint
-      Tag.belongsToMany(models.Post, {
+      Tag.belongsToMany(models.Book, {
         through: 'BookTags'
       });
     };

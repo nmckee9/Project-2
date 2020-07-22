@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../assets/style.css" type="text/css">
+    <link rel="stylesheet" href="/assets/style.css" type="text/css">
 
 </head>
 
@@ -48,7 +48,7 @@
             <div class="container"></div>
             <div class="row mainimg">
                 <div class="col-lg-12">
-                    <img src="../../assets/Brush Script Facebook Cover.png">
+                    <img src="/assets/Brush Script Facebook Cover.png">
                 </div>
             </div>
             <p class="lead bodytext">Explanation of Rabbit Hole Here</p>
@@ -80,23 +80,24 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6">
                <!--Music Results--> 
-                <h5 class="card-title" style="text-align: center;">Artist top tracks or track results</h5>
+                <h5 class="card-title" style="text-align: center;"></h5>
                 <div class="card text-center" id="topFive" style="width: 24rem;">
                     <ul class="list-group list-group-flush" id="searchedResults">
 
                     </ul>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
                 <!--Music Results--> 
-                 <h5 class="card-title" style="text-align: center;">Artist top tracks or track results</h5>
-                 <div class="card text-center" id="relatedArtists" style="width: 24rem;">
-                     <ul class="list-group list-group-flush" id="artistNames">
-                     </ul>
-                 </div>
+                <h5 class="card-title" style="text-align: center;"></h5>
+                <div class="card text-center" id="relatedArtists" style="width: 24rem;">
+                    <ul class="list-group list-group-flush" id="artistNames">
+                    </ul>
+                </div>
             </div>
+        </div>
             
                 <!-- Book Results -->
                 <!-- <ul class="list-unstyled" id="bookResults">
@@ -174,48 +175,32 @@
                     </li>
                 </ul>
             </div> --> 
-        </div>
         <div class="row">
             <div class="col-lg-12">
-                <!-- Discover Similar Artists -->
+                <!-- BOOKS -->
                 <div style="margin-top: 20px;">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Discover Similar Artists</h5>
-                            <p class="card-text">Here are some other artists you might want to give a listen to</p>
-                            <div class="list-group" id="relatedArtistList">
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                            </div>
+                            <h5 class="card-title" id="books-header"></h5>
+                            <p class="card-text" id="books-p"></p>
+                            <ul class="list-group" id="relatedBooklist">
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+    </div>
 
-
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
-        <script src="../../public/js/bundle.js"></script>
+    <script src="/js/bundle.js"></script>
 </body>
 
 </html>
