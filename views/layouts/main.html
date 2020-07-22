@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../assets/style.css" type="text/css">
+    <link rel="stylesheet" href="/assets/style.css" type="text/css">
 
 </head>
 
@@ -48,7 +48,7 @@
             <div class="container"></div>
             <div class="row mainimg">
                 <div class="col-lg-12">
-                    <img src="../../assets/Brush Script Facebook Cover.png">
+                    <img src="/assets/Brush Script Facebook Cover.png">
                 </div>
             </div>
             <p class="lead bodytext">Explanation of Rabbit Hole Here</p>
@@ -74,55 +74,45 @@
 
     <!-- Dynamically populate results  -->
     <div class="container">
-        <div class="card text-center">
+        <div class="card text-center" id="resultsMain">
             <div class="card-header">
                 Results
             </div>
-            <div class="card-body">
-                <h5 class="card-title" id="resultsTitle">Artist or Track Title from Spotify API</h5>
-                <p class="card-text" id="resultsBio">Bio Info From Spotify API</p>
-                <p id="resultsImg">Background Image from Spotify API</p>
-            </div>
         </div>
         <div class="row">
-            <div class="col-6">
-                Music Results
-                <h5 class="card-title" style="text-align: center;">Artist top tracks or track results</h5>
-                <div class="card text-center" style="width: 24rem;">
+            <div class="col-lg-6">
+               <!--Music Results--> 
+                <h5 class="card-title" style="text-align: center;"></h5>
+                <div class="card text-center" id="topFive" style="width: 24rem;">
                     <ul class="list-group list-group-flush" id="searchedResults">
-                        <li class="list-group-item">Top Tracks
-                            <a href="#" class="badge badge-info" id="likeTrack">like</a>
-                        </li>
-                        <li class="list-group-item">Listed
-                            <a href="#" class="badge badge-info" id="likeTrack">like</a>
-                        </li>
-                        <li class="list-group-item">Here
-                            <a href="#" class="badge badge-info" id="likeTrack">like</a>
-                        </li>
-                        <li class="list-group-item">track 4
-                            <a href="#" class="badge badge-info" id="likeTrack">like</a>
-                        </li>
-                        <li class="list-group-item">track 5
-                            <a href="#" class="badge badge-info" id="likeTrack">like</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
-            <div class="col-6">
-                Book Results
-                <ul class="list-unstyled" id="bookResults">
+            <div class="col-lg-6">
+                <!--Music Results--> 
+                <h5 class="card-title" style="text-align: center;"></h5>
+                <div class="card text-center" id="relatedArtists" style="width: 24rem;">
+                    <ul class="list-group list-group-flush" id="artistNames">
+                    </ul>
+                </div>
+            </div>
+        </div>
+            
+                <!-- Book Results -->
+                <!-- <ul class="list-unstyled" id="bookResults">
                     <li class="media">
                         <img src="..." class="mr-3" alt="..." id="bookImg">
                         <div class="media-body">
                             <h5 class="mt-0 mb-1" id="bookTitle">List-based media object</h5>
-                            <p id="bookAuthor">Author</p>
+                            <p id="bookAuthor">Author</p> -->
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
                                 data-target="#exampleModal">
                                 book preview
                             </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            <-- Modal -->
+                            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -143,8 +133,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> -->
+                        <!-- </div>
                         <a href="#" class="badge badge-info" id="likeBook">like</a>
                     </li>
                     <li class="media">
@@ -152,13 +142,13 @@
                         <div class="media-body">
                             <h5 class="mt-0 mb-1" id="bookTitle">List-based media object</h5>
                             <p id="bookAuthor">Author</p>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            <!- Button trigger modal -->
+                            <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
                                 data-target="#exampleModal">
                                 book preview
                             </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            <!-Modal -->
+                            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -184,49 +174,37 @@
                         <a href="#" class="badge badge-info" id="likeBook">like</a>
                     </li>
                 </ul>
-            </div>
-        </div>
+            </div> --> 
         <div class="row">
             <div class="col-lg-12">
-                <!-- Discover Similar Artists -->
+                <!-- BOOKS -->
                 <div style="margin-top: 20px;">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Discover Similar Artists</h5>
-                            <p class="card-text">Here are some other artists you might want to give a listen to</p>
-                            <div class="list-group" id="relatedArtistList">
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                                <li href="#" class="list-group-item list-group-item-action">Artist
-                                    <a href="#" class="badge badge-info" id="likeArtist">like</a>
-                                </li>
-                            </div>
+                            <h5 class="card-title" id="books-header"></h5>
+                            <p class="card-text" id="books-p"></p>
+                            <ul class="list-group" id="relatedBooklist">
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+    </div>
 
-
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+<<<<<<< HEAD
         <script src="../../public/js/bundle.js"></script>
+=======
+    <script src="/js/bundle.js"></script>
+>>>>>>> origin/master
 </body>
 
 </html>

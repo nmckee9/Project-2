@@ -8,7 +8,7 @@ module.exports = function(app) {
   app.get("/", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/main");
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
@@ -16,17 +16,17 @@ module.exports = function(app) {
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/main");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   app.get("/main", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/layouts/main.html"));
+    res.sendFile(path.join(__dirname, "../views/layouts/main.html"));
   });
 
   app.get("/likes", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/layouts/likes.html"));
+    res.sendFile(path.join(__dirname, "../views/layouts/likes.html"));
   });
 
   app.get("/books", function(req, res) {

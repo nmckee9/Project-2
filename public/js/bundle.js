@@ -55427,7 +55427,7 @@ $(() => {
   const bookPreviewBtn = $("book-preview-button");
   const resultsDiv = $("<div>");
   resultsDiv.attr("id", "results");
-  $(".jumbotron").append(resultsDiv);
+  $("#resultsMain").append(resultsDiv);
 
   submitBtn.on("click", event => {
     event.preventDefault();
@@ -55455,28 +55455,44 @@ $(() => {
           for (let i = 0; i< response.artists.items.length; i++) {
             $(`#${i}`).on("click", event => {
               event.preventDefault();
-              artistDiv.empty();
+              
               spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`)
                 .then(res => {
-                    const topFiveDiv = $("<div>");
-                    const topFiveList = $("<ol>");
+                    const topFiveEl = $("#searchedResults");
+                    
                     for (let k = 0; k < 5; k++){
-                        const listEl = $("<li>");
-                        const topFiveEl = $("<ul>");
-                        let title = $("<li>").text(`Title: ${res.tracks[k].name}`);
-                        let artist = $("<li>").text(`Artist: ${res.tracks[k].artists[0].name}`);
-                        let album = $("<li>").text(`Album: ${res.tracks[k].album.name}`);
-                        topFiveEl.append(title, artist, album);
-                        listEl.append(topFiveEl);
-                        topFiveList.append(listEl);
-                      }
-                    topFiveDiv.append(topFiveList);
-                    $(resultsDiv).append(topFiveDiv);
+                        let title = $("<li>");
+                        title.text(`Title: ${res.tracks[k].name}`);
+                        title.addClass("list-group-item")
+                        likeBtn = $("<button>")
+                        likeBtn.text("Like");
+                        likeBtn.addClass("badge badge-info like-btn");
+                        likeBtn.attr("data-trackId", res.tracks[k].id);
+                        likeBtn.attr("data-name", res.tracks[k].name);
+                        title.append(likeBtn);
+                        topFiveEl.append(title);
+                    }
               })
                 .catch(err => {
                   if (err) throw err;
                })
+
+               spotify
+                .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/related-artists`)
+                .then(res => {
+                    const relatedArtists = $("#artistNames");
+
+                    for (let j = 0; j < 5; j++) {
+                        let name = $("<li>");
+                        name.text(`Artist Name: ${res.artists[j].name}`);
+                        name.addClass("list-group-item");
+                        relatedArtists.append(name);
+                    }
+                })
+                .catch(err => {
+                    if (err) throw err;
+                })
             })
           }
             
@@ -55503,6 +55519,14 @@ $(() => {
         });
     }
   })
+
+  $("#searchedResults").on("click", ".like-btn", function() {
+    
+    console.log($(this).data("trackid"));
+      $.post("/api/tracks", {id : $(this).data("trackid"), name: $(this).data("name")}, track => {
+          console.log("success")
+      })
+  })
   const renderArtistBooks = () => {
     const searchTerm = search.val();
     console.log("https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"')
@@ -55517,36 +55541,24 @@ $(() => {
           noBooksDiv.text("No books found...");
         }
         //add title and author contents to html book list from json
-        const musicBookContainer = $("<div>");
-        musicBookContainer.addClass("both-container");
-        const bookDiv = $("<div>");
-        bookDiv.addClass("book-div col div.jumbotron jumbotron");
-        musicBookContainer.append(bookDiv);
-        const booklistHeader = $("<h2>");
-        booklistHeader.text("Read about " + searchTerm + "...");
-        bookDiv.append(booklistHeader);
-        const list = $("<ul>");
-        list.addClass("booklist");
-        bookDiv.append(list);
-        resultsDiv.append(musicBookContainer);
+        $("#books-header").text("Discover Books");
+        $("#books-p").text("Here are some books about the artists");
         for (let i = 0; i < data.items.length; i++) {
           const listItem = $("<li>");
+          listItem.addClass("list-group-item list-group-item-action");
           listItem.addClass("book-item");
           listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
-          bookDiv.append(listItem);
           const bookPreviewBtn = $("<a>");
-          bookPreviewBtn.addClass("book-preview-button btn");
+          bookPreviewBtn.addClass("badge badge-warning");
           bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
           bookPreviewBtn.attr("target", "_blank");
-          bookPreviewBtn.text("Preview");
+          bookPreviewBtn.text("See Book");
           listItem.append(bookPreviewBtn);
           const likeBookBtn = $("<button>");
-          likeBookBtn.addClass("artist-like-book-button");
-          bookPreviewBtn.attr("book-title", data.items[i].volumeInfo.title);
+          likeBookBtn.addClass("badge badge-info");
           likeBookBtn.text("Like");
           listItem.append(likeBookBtn);
-          list.append(listItem);
-          bookDiv.append(list);
+          $("#relatedBooklist").append(listItem);
         }
       },
       type: "GET"
