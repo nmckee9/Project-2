@@ -55517,36 +55517,23 @@ $(() => {
           noBooksDiv.text("No books found...");
         }
         //add title and author contents to html book list from json
-        const musicBookContainer = $("<div>");
-        musicBookContainer.addClass("both-container");
-        const bookDiv = $("<div>");
-        bookDiv.addClass("book-div col div.jumbotron jumbotron");
-        musicBookContainer.append(bookDiv);
-        const booklistHeader = $("<h2>");
-        booklistHeader.text("Read about " + searchTerm + "...");
-        bookDiv.append(booklistHeader);
-        const list = $("<ul>");
-        list.addClass("booklist");
-        bookDiv.append(list);
-        resultsDiv.append(musicBookContainer);
+        $("$books-header").text("Discover Books");
+        $("$books-p").text("Here are some books about the artists");
         for (let i = 0; i < data.items.length; i++) {
           const listItem = $("<li>");
+          listItem.addClass("list-group-item list-group-item-action");
           listItem.addClass("book-item");
           listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
-          bookDiv.append(listItem);
           const bookPreviewBtn = $("<a>");
-          bookPreviewBtn.addClass("book-preview-button btn");
+          bookPreviewBtn.addClass("badge badge-warning");
           bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
           bookPreviewBtn.attr("target", "_blank");
-          bookPreviewBtn.text("Preview");
+          bookPreviewBtn.text("See Book");
           listItem.append(bookPreviewBtn);
           const likeBookBtn = $("<button>");
-          likeBookBtn.addClass("artist-like-book-button");
-          bookPreviewBtn.attr("book-title", data.items[i].volumeInfo.title);
+          likeBookBtn.addClass("badge badge-info");
           likeBookBtn.text("Like");
           listItem.append(likeBookBtn);
-          list.append(listItem);
-          bookDiv.append(list);
         }
       },
       type: "GET"
