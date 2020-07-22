@@ -20,7 +20,7 @@ module.exports = function(app) {
       },
       include: [db.Book]
     }).then(function(dbTrack) {
-      res.json(dbTrack;
+      res.json(dbTrack);
     });
   });
 
