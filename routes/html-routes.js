@@ -22,11 +22,11 @@ module.exports = function(app) {
   });
 
   app.get("/main", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/layouts/main.html"));
+    res.render("index");
   });
 
   app.get("/likes", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/layouts/likes.html"));
+    res.render("likes");
   });
 
   app.get("/books", function(req, res) {

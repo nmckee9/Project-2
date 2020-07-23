@@ -55426,11 +55426,13 @@ $(() => {
   const submitBtn = $("#mainSearch");
   const bookPreviewBtn = $("book-preview-button");
   const resultsDiv = $("<div>");
+  const main = $("#resultsMain")
   resultsDiv.attr("id", "results");
-  $("#resultsMain").append(resultsDiv);
+  main.append(resultsDiv);
 
   submitBtn.on("click", event => {
     event.preventDefault();
+    $(".card-hide").removeClass("d-none");
     let queryType = selectChoice.val();
     let queryName = search.val();
     let artistDiv = $("<div>");
@@ -55452,17 +55454,20 @@ $(() => {
             return response;
         })
         .then(response => {
+           
           for (let i = 0; i< response.artists.items.length; i++) {
             $(`#${i}`).on("click", event => {
               event.preventDefault();
+              main.empty();
               
               spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`)
                 .then(res => {
                     const topFiveEl = $("#searchedResults");
-                    
+                    $("#topTitle").text("Top Five Tracks");
                     for (let k = 0; k < 5; k++){
                         let title = $("<li>");
+                        const playBtn = $("<button>");
                         title.text(`Title: ${res.tracks[k].name}`);
                         title.addClass("list-group-item")
                         likeBtn = $("<button>")
@@ -55470,6 +55475,9 @@ $(() => {
                         likeBtn.addClass("badge badge-info like-btn");
                         likeBtn.attr("data-trackId", res.tracks[k].id);
                         likeBtn.attr("data-name", res.tracks[k].name);
+                        playBtn.addClass("badge badge-success");
+                        playBtn.text("Play");
+                        title.append(playBtn);
                         title.append(likeBtn);
                         topFiveEl.append(title);
                     }
@@ -55482,7 +55490,8 @@ $(() => {
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/related-artists`)
                 .then(res => {
                     const relatedArtists = $("#artistNames");
-
+                    $("#relatedTitle").text("Related Artists");
+        
                     for (let j = 0; j < 5; j++) {
                         let name = $("<li>");
                         name.text(`Artist Name: ${res.artists[j].name}`);
@@ -55495,8 +55504,13 @@ $(() => {
                 })
                 spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}`)
-                .then(response => {
-                    
+                .then(res => {
+                    const artistName = $("<h2>");
+                    const artistPic = $("<img>");
+                    artistName.text(res.name);
+                    artistPic.attr("src", res.images[0].url);
+                    artistPic.attr("style", "width:500px; height:400px; margin-left: 27%")
+                    main.append(artistName, artistPic);
                 }
 
                 )

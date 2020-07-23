@@ -38,6 +38,24 @@ module.exports = function (app) {
   });
 
 
+  app.get("/api/books", function(req, res) {
+
+    db.Book.findAll({
+    }).then(function(dbBook) {
+      res.json(dbBook);
+    });
+  });
+
+  //view books under artist table in likes.html
+  app.get("/api/books/:id", function(req, res) {
+    db.Book.findOne({
+      where: {
+        id: req.params.id
+      },
+    }).then(function(dbBook) {
+      res.json(dbBook);
+    });
+  });
   // POST route for saving a new book when user clicks Like button for a book
   app.post("/api/books", function (req, res) {
     db.Book.create({title: req.body.title}).then(function (dbBook) {

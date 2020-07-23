@@ -19,19 +19,16 @@ module.exports = function(sequelize, DataTypes) {
     Tag.belongsToMany(models.Book, {
       through: "BookTags",
     });
-<<<<<<< Updated upstream
-  
+
     Tag.associate = function(models) {
       // We're saying that a Tag should belong to a Book
       // A Tag can't be created without an Artist or Track due to the foreign key constraint
       Tag.belongsToMany(models.Book, {
-        through: 'BookTags'
+        through: "BookTags",
       });
     };
-  
+
     return Tag;
-=======
->>>>>>> Stashed changes
   };
 
   return Tag;

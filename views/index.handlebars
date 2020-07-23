@@ -4,7 +4,7 @@
             <div class="container"></div>
             <div class="row mainimg">
                 <div class="col-lg-12">
-                    <img src="../../public/assets/Brush Script Facebook Cover.png">
+                    <img src="/assets/Brush Script Facebook Cover.png">
                 </div>
             </div>
             <p class="lead bodytext">Explanation of Rabbit Hole Here</p>
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Dynamically populate results  -->
-    <div class="container">
+    <div class="container card-hide d-none">
         <div class="card text-center" id="resultsMain">
             <div class="card-header">
                 Results
@@ -38,20 +38,39 @@
         <div class="row">
             <div class="col-lg-6">
                 <!--Music Results-->
-                <h5 class="card-title" style="text-align: center;"></h5>
+                <div style="margin-top: 20px;">
+                    <div class="card text-center">
+                        <div class="card-body" id="topFive">
+                            <h5 class="card-title" id="topTitle"></h5>
+                            <ul class="list-group list-group-flush" id="searchedResults">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {{!-- <h5 class="card-title" style="text-align: center;"></h5>
                 <div class="card text-center" id="topFive" style="width: 24rem;">
                     <ul class="list-group list-group-flush" id="searchedResults">
-
                     </ul>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-6">
                 <!--Music Results-->
-                <h5 class="card-title" style="text-align: center;"></h5>
-                <div class="card text-center" id="relatedArtists" style="width: 24rem;">
-                    <ul class="list-group list-group-flush" id="artistNames">
-                    </ul>
+                <div style="margin-top: 20px;">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title" id="relatedTitle"></h5>
+                            <ul class="list-group list-group-flush" id="artistNames">
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                {{!-- <div class="card text-center">
+                    <h5 class="card-title" style="text-align: center;" id="relatedTitle"></h5>
+                    <div class="card text-center" id="relatedArtists" style="width: 24rem;">
+                        <ul class="list-group list-group-flush" id="artistNames">
+                        </ul>
+                    </div>
+                </div> --}}
             </div>
         </div>
         <div class="row">
