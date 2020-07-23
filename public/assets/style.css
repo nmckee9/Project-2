@@ -1,0 +1,27 @@
+  .main {
+    margin: 0px;
+    padding: 0px;
+    background-color: #35363a;
+    text-align: center;
+  }
+
+#navbarDropdown {
+    color: thistle;
+}
+
+.likesjumb {
+    background-color: white;
+    text-align: center;
+}
+
+.navbartext {
+    color: thistle;
+}
+
+.mainimg {
+  text-align: center;
+}
+
+.bodytext {
+  color: thistle;
+}

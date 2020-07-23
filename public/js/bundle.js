@@ -55427,7 +55427,7 @@ $(() => {
   const bookPreviewBtn = $("book-preview-button");
   const resultsDiv = $("<div>");
   resultsDiv.attr("id", "results");
-  $(".jumbotron").append(resultsDiv);
+  $("#resultsMain").append(resultsDiv);
 
   submitBtn.on("click", event => {
     event.preventDefault();
@@ -55455,28 +55455,51 @@ $(() => {
           for (let i = 0; i< response.artists.items.length; i++) {
             $(`#${i}`).on("click", event => {
               event.preventDefault();
-              artistDiv.empty();
+              
               spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`)
                 .then(res => {
-                    const topFiveDiv = $("<div>");
-                    const topFiveList = $("<ol>");
+                    const topFiveEl = $("#searchedResults");
+                    
                     for (let k = 0; k < 5; k++){
-                        const listEl = $("<li>");
-                        const topFiveEl = $("<ul>");
-                        let title = $("<li>").text(`Title: ${res.tracks[k].name}`);
-                        let artist = $("<li>").text(`Artist: ${res.tracks[k].artists[0].name}`);
-                        let album = $("<li>").text(`Album: ${res.tracks[k].album.name}`);
-                        topFiveEl.append(title, artist, album);
-                        listEl.append(topFiveEl);
-                        topFiveList.append(listEl);
-                      }
-                    topFiveDiv.append(topFiveList);
-                    $(resultsDiv).append(topFiveDiv);
+                        let title = $("<li>");
+                        title.text(`Title: ${res.tracks[k].name}`);
+                        title.addClass("list-group-item")
+                        likeBtn = $("<button>")
+                        likeBtn.text("Like");
+                        likeBtn.addClass("badge badge-info like-btn");
+                        likeBtn.attr("data-trackId", res.tracks[k].id);
+                        likeBtn.attr("data-name", res.tracks[k].name);
+                        title.append(likeBtn);
+                        topFiveEl.append(title);
+                    }
               })
                 .catch(err => {
                   if (err) throw err;
                })
+
+               spotify
+                .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/related-artists`)
+                .then(res => {
+                    const relatedArtists = $("#artistNames");
+
+                    for (let j = 0; j < 5; j++) {
+                        let name = $("<li>");
+                        name.text(`Artist Name: ${res.artists[j].name}`);
+                        name.addClass("list-group-item");
+                        relatedArtists.append(name);
+                    }
+                })
+                .catch(err => {
+                    if (err) throw err;
+                })
+                spotify
+                .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}`)
+                .then(response => {
+                    
+                }
+
+                )
             })
           }
             
@@ -55501,8 +55524,6 @@ $(() => {
         });
     }
   })
-<<<<<<< Updated upstream
-=======
 
   $("#searchedResults").on("click", ".like-btn", function() {
     
@@ -55518,7 +55539,6 @@ $(() => {
     })
   });
 
->>>>>>> Stashed changes
   const renderArtistBooks = () => {
     const searchTerm = search.val();
     console.log("https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"')
@@ -55533,8 +55553,8 @@ $(() => {
           noBooksDiv.text("No books found...");
         }
         //add title and author contents to html book list from json
-        $("$books-header").text("Discover Books");
-        $("$books-p").text("Here are some books about the artists");
+        $("#books-header").text("Discover Books");
+        $("#books-p").text("Here are some books about the artists");
         for (let i = 0; i < data.items.length; i++) {
           const listItem = $("<li>");
           listItem.addClass("list-group-item list-group-item-action");
@@ -55551,6 +55571,7 @@ $(() => {
           likeBookBtn.text("Like");
           likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
           listItem.append(likeBookBtn);
+          $("#relatedBooklist").append(listItem);
         }
       },
       type: "GET"
