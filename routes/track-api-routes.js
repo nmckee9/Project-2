@@ -5,7 +5,6 @@ module.exports = function(app) {
   app.get("/api/tracks", function(req, res) {
 
     db.Track.findAll({
-      include: [db.Book]
     }).then(function(dbTrack) {
       res.json(dbTrack);
     });
@@ -13,12 +12,10 @@ module.exports = function(app) {
 
   //view books under artist table in likes.html
   app.get("/api/tracks/:id", function(req, res) {
-   
     db.Track.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.Book]
     }).then(function(dbTrack) {
       res.json(dbTrack);
     });
@@ -26,18 +23,18 @@ module.exports = function(app) {
 
   //api route to update artist table with the name of artist when an artist like button is clicked
   app.post("/api/tracks", function(req, res) {
-    db.Track.create({name: req.body.name}).then(function(dbArtist) {
-      res.json(dbArtist);
+    db.Track.create({name: req.body.name}).then(function(dbTrack) {
+      res.json(dbTrack);
     });
   });
 
-  app.delete("/api/artists/:id", function(req, res) {
-    db.Artist.destroy({
+  app.delete("/api/tracks/:id", function(req, res) {
+    db.Track.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbArtist) {
-      res.json(dbArtist);
+    }).then(function(dbTrack) {
+      res.json(dbTrack);
     });
   });
 

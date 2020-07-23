@@ -4,8 +4,7 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/api/artists", function(req, res) {
 
-    db.Artist.findAll({
-      include: [db.Book]
+    db.Artist.findAll({ 
     }).then(function(dbArtist) {
       res.json(dbArtist);
     });
