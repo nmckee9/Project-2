@@ -55493,6 +55493,13 @@ $(() => {
                 .catch(err => {
                     if (err) throw err;
                 })
+                spotify
+                .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}`)
+                .then(response => {
+                    
+                }
+
+                )
             })
           }
             
@@ -55508,11 +55515,9 @@ $(() => {
         .then(response => {
           const songsDiv = $("<div>");
           for (let i = 0; i < response.tracks.items.length; i++) {
-            let title = $("<p>").text(response.tracks.items[i].name);
-            let artist = $("<p>").text(
-              response.tracks.items[i].artists[0].name
-            );
-            let album = $("<p>").text(response.tracks.items[i].album.name);
+            let title = $("<p>").text(`Title: ${response.tracks.items[i].name}`);
+            let artist = $("<p>").text(`Artist: ${response.tracks.items[i].artists[0].name}`);
+            let album = $("<p>").text(`Album: ${response.tracks.items[i].album.name}`);
             songsDiv.append(title, artist, album);
           }
           $(resultsDiv).append(songsDiv);
@@ -55523,10 +55528,17 @@ $(() => {
   $("#searchedResults").on("click", ".like-btn", function() {
     
     console.log($(this).data("trackid"));
-      $.post("/api/tracks", {id : $(this).data("trackid"), name: $(this).data("name")}, track => {
-          console.log("success")
-      })
-  })
+    $.post("/api/tracks", {id : $(this).data("trackid"), name: $(this).data("name")}, track => {
+        console.log("success")
+    })
+  });
+
+  $("#relatedBooklist").on("click", ".book-like", function() {
+    $.post("/api/books", { title: $(this).data("title")}, book => {
+        console.log($(this).data("title"));
+    })
+  });
+
   const renderArtistBooks = () => {
     const searchTerm = search.val();
     console.log("https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"')
@@ -55555,8 +55567,9 @@ $(() => {
           bookPreviewBtn.text("See Book");
           listItem.append(bookPreviewBtn);
           const likeBookBtn = $("<button>");
-          likeBookBtn.addClass("badge badge-info");
+          likeBookBtn.addClass("badge badge-info book-like");
           likeBookBtn.text("Like");
+          likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
           listItem.append(likeBookBtn);
           $("#relatedBooklist").append(listItem);
         }

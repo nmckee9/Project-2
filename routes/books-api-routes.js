@@ -40,7 +40,7 @@ module.exports = function (app) {
 
   // POST route for saving a new book when user clicks Like button for a book
   app.post("/api/books", function (req, res) {
-    db.Book.create(req.name).then(function (dbBook) {
+    db.Book.create({title: req.body.title}).then(function (dbBook) {
       res.json(dbBook);
     });
   });
