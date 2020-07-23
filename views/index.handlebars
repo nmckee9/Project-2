@@ -1,25 +1,73 @@
-        <div class="container">
-            <div class="jumbotron" style="text-align: center;">
-                <div class="container"></div>
-                <h1 class="display-4">Rabbit Hole</h1>
-                <p class="lead">Explanation of Rabbit Hole Here</p>
-                <hr class="my-4">
-                <p>To get started, select either artist or track title</p>
-                <div class="InputAddOn">
-                    <span class="InputAddOn-item">
-                        <select class="custom-select select-shape mr-sm-2" id="inlineFormCustomSelect">
-                            <option value="1" id="selectArtist">Artist</i></option>
-                            <option value="2" id="selectTrack">Track</option>
-                        </select>
-                    </span>
-                    <p>Then search for any artist or a track title</p>
-                    <div class="">
-                        <input type="text" class="form-control" id="searchInput" placeholder="enter artist or track"
-                            aria-label="Username" aria-describedby="addon-wrapping">
-                    </div>
+<body>
+    <div class="container">
+        <div class="jumbotron main">
+            <div class="container"></div>
+            <div class="row mainimg">
+                <div class="col-lg-12">
+                    <img src="../../public/assets/Brush Script Facebook Cover.png">
                 </div>
-                <a class="btn btn-primary btn-lg" href="#" id="mainSearch" role="button"
-                    style="margin-top: 20px;">go!</a>
+            </div>
+            <p class="lead bodytext">Explanation of Rabbit Hole Here</p>
+            <hr class="my-4 bodytext">
+            <p class="bodytext">To get started, select either artist or track title</p>
+            <div class="InputAddOn">
+                <span class="InputAddOn-item">
+                    <select class="custom-select select-shape mr-sm-2" id="inlineFormCustomSelect">
+                        <option value="1" id="selectArtist">Artist</i></option>
+                        <option value="2" id="selectTrack">Track</option>
+                    </select>
+                </span>
+                <p class="bodytext">Then search for any artist or a track title</p>
+                <div class="">
+                    <input type="text" class="form-control" id="searchInput" placeholder="enter artist or track"
+                        aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+            </div>
+            <a class="btn btn-secondary btn-lg bodytext" href="#" id="mainSearch" role="button"
+                style="margin-top: 20px;">go!</a>
+        </div>
+    </div>
+
+    <!-- Dynamically populate results  -->
+    <div class="container">
+        <div class="card text-center" id="resultsMain">
+            <div class="card-header">
+                Results
             </div>
         </div>
-    
+        <div class="row">
+            <div class="col-lg-6">
+                <!--Music Results-->
+                <h5 class="card-title" style="text-align: center;"></h5>
+                <div class="card text-center" id="topFive" style="width: 24rem;">
+                    <ul class="list-group list-group-flush" id="searchedResults">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!--Music Results-->
+                <h5 class="card-title" style="text-align: center;"></h5>
+                <div class="card text-center" id="relatedArtists" style="width: 24rem;">
+                    <ul class="list-group list-group-flush" id="artistNames">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- BOOKS -->
+                <div style="margin-top: 20px;">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title" id="books-header"></h5>
+                            <p class="card-text" id="books-p"></p>
+                            <ul class="list-group" id="relatedBooklist">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
