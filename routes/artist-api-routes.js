@@ -12,7 +12,6 @@ module.exports = function(app) {
 
   //view books under artist table in likes.html
   app.get("/api/artists/:id", function(req, res) {
-   
     db.Artist.findOne({
       where: {
         id: req.params.id
