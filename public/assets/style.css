@@ -25,3 +25,8 @@
 .bodytext {
   color: thistle;
 }
+
+#mainSearch {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
