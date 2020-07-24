@@ -55447,7 +55447,7 @@ $(() => {
             let artistName = $("<button>").text(
               `Artist Name: ${response.artists.items[i].name}`
               );
-              artistName.addClass("btn btn-link");
+              artistName.addClass("btn btn-outline-dark btn-lg");
               artistName.attr("id", i);
               artistDiv.append(artistName);
             }
@@ -55498,7 +55498,12 @@ $(() => {
         
                     for (let j = 0; j < 5; j++) {
                         let name = $("<li>");
+                        const likeRelated = $("<button>");
+                        likeRelated.text("Like");
+                        likeRelated.addClass("badge badge-info like-related");
+                        likeRelated.attr("data-related", res.artists[j].name);
                         name.text(`Artist Name: ${res.artists[j].name}`);
+                        name.append(likeRelated);
                         name.addClass("list-group-item");
                         relatedArtists.append(name);
                     }
@@ -55511,9 +55516,15 @@ $(() => {
                 .then(res => {
                     const artistName = $("<h2>");
                     const artistPic = $("<img>");
+                    const likeArtist = $("<button>");
+                    likeArtist.text("Like");
+                    likeArtist.addClass("badge badge-info like-artist");
+                    likeArtist.attr("data-artist", res.name);
                     artistName.text(res.name);
+                    artistName.append(likeArtist);
                     artistPic.attr("src", res.images[0].url);
-                    artistPic.attr("style", "width:500px; height:400px; margin-left: 27%")
+                    //artistPic.attr("style", "width:500px; height:400px; margin-left: 27%")
+                    artistPic.addClass("img-fluid");
                     main.append(artistName, artistPic);
                 })
             })
@@ -55529,6 +55540,7 @@ $(() => {
       spotify
         .search({ type: "track", query: queryName, limit: 5 })
         .then(response => {
+            $(".hide-me").addClass("d-none");
           const songsDiv = $("<div>");
           for (let i = 0; i < response.tracks.items.length; i++) {
             let title = $("<p>").text(`Title: ${response.tracks.items[i].name}`);
@@ -55555,6 +55567,21 @@ $(() => {
         console.log($(this).data("title"));
     })
   });
+
+  $("#artistNames").on("click", ".like-related", function() {
+    $(this).text("Liked!");
+    $.post("/api/artists", { name: $(this).data("related")}, related => {
+        console.log($(this).data("related"));
+    })
+  });
+
+  main.on("click", ".like-artist", function() {
+    $(this).text("Liked!");
+    $.post("/api/artists", { name: $(this).data("artist")}, related => {
+        console.log($(this).data("related"));
+    })
+  });
+
 
   const renderArtistBooks = () => {
     $("#relatedBooklist").empty();
