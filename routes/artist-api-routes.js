@@ -24,7 +24,7 @@ module.exports = function(app) {
 
   //api route to update artist table with the name of artist when an artist like button is clicked
   app.post("/api/artists", function(req, res) {
-    db.Artist.create(req.name).then(function(dbArtist) {
+    db.Artist.create({name: req.body.name}).then(function(dbArtist) {
       res.json(dbArtist);
     });
   });

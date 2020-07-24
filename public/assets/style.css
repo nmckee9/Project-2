@@ -1,9 +1,9 @@
-  .main {
-    margin: 0px;
-    padding: 0px;
-    background-color: #35363a;
-    text-align: center;
-  }
+.main {
+  margin: 0px;
+  padding: 0px;
+  background-color: #35363a;
+  text-align: center;
+}
 
 #navbarDropdown {
     color: thistle;
@@ -29,4 +29,15 @@
 #mainSearch {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.login {
+  color: white;
+}
+
+.badge-info {
+  margin-left: 3px;
+}
+.badge-warning, .badge-success {
+  margin-left: 5px;
 }
