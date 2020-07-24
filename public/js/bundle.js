@@ -55425,13 +55425,15 @@ $(() => {
   let search = $("#searchInput");
   const submitBtn = $("#mainSearch");
   const bookPreviewBtn = $("book-preview-button");
-  const resultsDiv = $("<div>");
   const main = $("#resultsMain")
-  resultsDiv.attr("id", "results");
-  main.append(resultsDiv);
-
+  //main.append(resultsDiv);
+  
   submitBtn.on("click", event => {
     event.preventDefault();
+    main.empty();
+    const resultsDiv = $("<div>");
+    resultsDiv.attr("id", "results");
+    main.append(resultsDiv);
     $(".card-hide").removeClass("d-none");
     let queryType = selectChoice.val();
     let queryName = search.val();
@@ -55454,16 +55456,17 @@ $(() => {
             return response;
         })
         .then(response => {
-           
-          for (let i = 0; i< response.artists.items.length; i++) {
+
+          for (let i = 0; i < response.artists.items.length; i++) {
             $(`#${i}`).on("click", event => {
-              event.preventDefault();
-              main.empty();
+            event.preventDefault();
+            main.empty();
               
               spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`)
                 .then(res => {
                     const topFiveEl = $("#searchedResults");
+                    topFiveEl.empty();
                     $("#topTitle").text("Top Five Tracks");
                     for (let k = 0; k < 5; k++){
                         let title = $("<li>");
@@ -55490,6 +55493,7 @@ $(() => {
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/related-artists`)
                 .then(res => {
                     const relatedArtists = $("#artistNames");
+                    relatedArtists.empty();
                     $("#relatedTitle").text("Related Artists");
         
                     for (let j = 0; j < 5; j++) {
@@ -55511,9 +55515,7 @@ $(() => {
                     artistPic.attr("src", res.images[0].url);
                     artistPic.attr("style", "width:500px; height:400px; margin-left: 27%")
                     main.append(artistName, artistPic);
-                }
-
-                )
+                })
             })
           }
             
@@ -55540,7 +55542,7 @@ $(() => {
   })
 
   $("#searchedResults").on("click", ".like-btn", function() {
-    
+    $(this).text("Liked!");
     console.log($(this).data("trackid"));
     $.post("/api/tracks", {id : $(this).data("trackid"), name: $(this).data("name")}, track => {
         console.log("success")
@@ -55548,12 +55550,14 @@ $(() => {
   });
 
   $("#relatedBooklist").on("click", ".book-like", function() {
+    $(this).text("Liked!");
     $.post("/api/books", { title: $(this).data("title")}, book => {
         console.log($(this).data("title"));
     })
   });
 
   const renderArtistBooks = () => {
+    $("#relatedBooklist").empty();
     const searchTerm = search.val();
     console.log("https://www.googleapis.com/books/v1/volumes?q=" + '"' + searchTerm + '"')
     $.ajax({
@@ -55568,7 +55572,7 @@ $(() => {
         }
         //add title and author contents to html book list from json
         $("#books-header").text("Discover Books");
-        $("#books-p").text("Here are some books about the artists");
+        $("#books-p").text("Here are related books about the artist or genre");
         for (let i = 0; i < data.items.length; i++) {
           const listItem = $("<li>");
           listItem.addClass("list-group-item list-group-item-action");
@@ -55591,8 +55595,7 @@ $(() => {
       type: "GET"
     });
     //get preview of book to appear when user clicks Book Preview button
-  }
-  ;
+    };
 });
 
 },{"node-spotify-api":116}],188:[function(require,module,exports){
