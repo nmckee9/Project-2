@@ -9,7 +9,7 @@ if (process.env.JAWSDB_URL) {
     user: "root",
     password: "root",
     database: "passport_demo"
-  })
+  });
 }
 
 connection.connect(function(err) {
