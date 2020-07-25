@@ -39,7 +39,7 @@ $(document).ready(function () {
   // This function resets the artists displayed with new artists from the database and displays artists
   artistContainer.on("click", $(".deleteArtist"), function (event) {
     event.stopPropagation();
-    const id = event.target.getAttribute("data-trackId");
+    const id = event.target.getAttribute("data-artistId");
     console.log("id", id);
     $.ajax({
       url: "/api/artists/" + id,
