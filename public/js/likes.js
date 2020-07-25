@@ -24,7 +24,7 @@ $(document).ready(function () {
           row.text(artists[i].name);
           const artistDeleteBtn = $("<button>");
           artistDeleteBtn.addClass("badge badge-info deleteArtist");
-          artistDeleteBtn.attr("id", artists[i].id);
+          artistDeleteBtn.attr("data-artistId", artists[i].id);
           artistDeleteBtn.text("remove");
           row.append(artistDeleteBtn);
           artistContainer.prepend(row);
