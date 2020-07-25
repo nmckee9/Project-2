@@ -55523,8 +55523,8 @@ $(() => {
                     artistName.text(res.name);
                     artistName.append(likeArtist);
                     artistPic.attr("src", res.images[0].url);
-                    //artistPic.attr("style", "width:500px; height:400px; margin-left: 27%")
-                    artistPic.addClass("img-fluid");
+                    artistPic.attr("style", "width:500px; height: 400px;")
+                    artistPic.addClass("img-fluid rounded mx-auto d-block");
                     main.append(artistName, artistPic);
                 })
             })
