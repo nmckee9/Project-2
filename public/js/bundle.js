@@ -55465,6 +55465,7 @@ $(() => {
               spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/top-tracks?country=US`)
                 .then(res => {
+                    $(".hide-card").removeClass("d-none");
                     const topFiveEl = $("#searchedResults");
                     topFiveEl.empty();
                     $("#topTitle").text("Top Five Tracks");
@@ -55492,6 +55493,7 @@ $(() => {
                spotify
                 .request(`https://api.spotify.com/v1/artists/${response.artists.items[i].id}/related-artists`)
                 .then(res => {
+                    $(".hide-card").removeClass("d-none");
                     const relatedArtists = $("#artistNames");
                     relatedArtists.empty();
                     $("#relatedTitle").text("Related Artists");
@@ -55549,7 +55551,6 @@ $(() => {
             songsDiv.append(title, artist, album);
 
             const artistBook = response.tracks.items[i].artists[0].name;
-            // $(".hide-me-books").addClass("d-none");
             $("#relatedBooklist").empty();
             $.ajax({
              url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + artistBook + '"&maxResults=5',
@@ -55562,7 +55563,7 @@ $(() => {
                 }
                 //add title and author contents to html book list from json
                 $("#books-header").text("Discover Books");
-                $("#books-p").text("Here are related books about the artist.");
+                $("#books-p").text("Here are books related to the artist.");
                 for (let i = 0; i < data.items.length; i++) {
                 const listItem = $("<li>");
                 listItem.addClass("list-group-item list-group-item-action");
@@ -55636,7 +55637,7 @@ $(() => {
         }
         //add title and author contents to html book list from json
         $("#books-header").text("Discover Books");
-        $("#books-p").text("Here are related books about the artist.");
+        $("#books-p").text("Here are books related to the artist.");
         for (let i = 0; i < data.items.length; i++) {
           const listItem = $("<li>");
           listItem.addClass("list-group-item list-group-item-action");
