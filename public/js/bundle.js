@@ -55540,13 +55540,50 @@ $(() => {
       spotify
         .search({ type: "track", query: queryName, limit: 5 })
         .then(response => {
-            $(".hide-me").addClass("d-none");
+            // $(".hide-me").addClass("d-none");
           const songsDiv = $("<div>");
           for (let i = 0; i < response.tracks.items.length; i++) {
             let title = $("<p>").text(`Title: ${response.tracks.items[i].name}`);
             let artist = $("<p>").text(`Artist: ${response.tracks.items[i].artists[0].name}`);
             let album = $("<p>").text(`Album: ${response.tracks.items[i].album.name}`);
             songsDiv.append(title, artist, album);
+
+            const artistBook = response.tracks.items[i].artists[0].name;
+            // $(".hide-me-books").addClass("d-none");
+            $("#relatedBooklist").empty();
+            $.ajax({
+             url: "https://www.googleapis.com/books/v1/volumes?q=" + '"' + artistBook + '"&maxResults=5',
+             dataType: "json",
+            success: data => {
+             if (!data.items) {
+                  const noBooksDiv = $("<div>");
+                noBooksDiv.addClass("no-books-found-div");
+                noBooksDiv.text("No books found...");
+                }
+                //add title and author contents to html book list from json
+                $("#books-header").text("Discover Books");
+                $("#books-p").text("Here are related books about the artist.");
+                for (let i = 0; i < data.items.length; i++) {
+                const listItem = $("<li>");
+                listItem.addClass("list-group-item list-group-item-action");
+                listItem.addClass("book-item");
+                listItem.text(data.items[i].volumeInfo.title + " by " + data.items[i].volumeInfo.authors[0]);
+                const bookPreviewBtn = $("<a>");
+                bookPreviewBtn.addClass("badge badge-warning");
+                bookPreviewBtn.attr("href", "https://books.google.com/books?id=" + data.items[i].id);
+                bookPreviewBtn.attr("target", "_blank");
+                bookPreviewBtn.text("See Book");
+                listItem.append(bookPreviewBtn);
+                const likeBookBtn = $("<button>");
+                likeBookBtn.addClass("badge badge-info book-like");
+                likeBookBtn.text("Like");
+                likeBookBtn.attr("data-title", data.items[i].volumeInfo.title);
+                listItem.append(likeBookBtn);
+                $("#relatedBooklist").append(listItem);
+        }
+      },
+      type: "GET"
+    });
           }
           $(resultsDiv).append(songsDiv);
         });
@@ -55599,7 +55636,7 @@ $(() => {
         }
         //add title and author contents to html book list from json
         $("#books-header").text("Discover Books");
-        $("#books-p").text("Here are related books about the artist or genre");
+        $("#books-p").text("Here are related books about the artist.");
         for (let i = 0; i < data.items.length; i++) {
           const listItem = $("<li>");
           listItem.addClass("list-group-item list-group-item-action");
@@ -55621,7 +55658,6 @@ $(() => {
       },
       type: "GET"
     });
-    //get preview of book to appear when user clicks Book Preview button
     };
 });
 
