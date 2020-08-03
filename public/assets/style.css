@@ -41,3 +41,26 @@
 .badge-warning, .badge-success {
   margin-left: 5px;
 }
+
+.bunny {
+  width: 50px;
+  height: 50px;
+  left: 5px;
+  position: relative;
+}
+
+.thistle-color{
+  color: thistle;
+}
+
+.sign-up {
+  position: relative;
+}
+
+.nav-size{
+  font-size: 25px;
+}
+
+.login-left {
+  float: left;
+}
